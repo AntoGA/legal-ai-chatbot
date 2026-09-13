@@ -1,0 +1,14 @@
+{
+  "name": "legal-ai-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Russian legal AI assistant with an embeddable Tilda widget",
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check public/chat.js && node --check public/widget.js && node --check test/server.test.js"
+  }
+}
