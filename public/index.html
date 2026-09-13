@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Юридический AI-помощник</title>
+  <link rel="stylesheet" href="/chat.css">
+  <script src="/chat.js" defer></script>
+</head>
+<body>
+<main class="chat">
+  <header><div class="eyebrow">ПЕРВИЧНАЯ КОНСУЛЬТАЦИЯ • AI</div><h1 id="company">Юридический помощник</h1><p>Поможем разобраться, с чего начать</p><nav><a id="contact" hidden target="_blank" rel="noopener noreferrer">Связаться с компанией</a><button id="clear" type="button">Очистить</button></nav></header>
+  <section id="messages" role="log" aria-label="Переписка" aria-live="polite" aria-relevant="additions"></section>
+  <p id="status" role="status"></p>
+  <div class="quick" aria-label="Примеры вопросов"><button type="button" data-question="Хочу обсудить расторжение договора.">Договоры</button><button type="button" data-question="Нужна информация по взысканию долга.">Долги</button><button type="button" data-question="Нужна информация по трудовому спору.">Трудовые споры</button></div>
+  <form id="form">
+    <label class="consent"><input id="consent" type="checkbox" required> <span>Я ознакомлен(а): сообщения передаются внешнему AI-провайдеру. Не отправляйте конфиденциальные и персональные данные. <a id="privacy" hidden target="_blank" rel="noopener noreferrer">Политика обработки данных</a></span></label>
+    <div class="input-row"><textarea id="input" aria-label="Ваш вопрос" placeholder="Опишите ситуацию и укажите страну…" maxlength="4000" rows="2" required></textarea><button id="send" type="submit" aria-label="Отправить сообщение">➤</button></div>
+  </form>
+  <footer>AI может ошибаться. Ответы не заменяют консультацию юриста. Актуальность законодательства не проверяется автоматически.</footer>
+</main>
+</body>
+</html>
