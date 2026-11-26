@@ -78,8 +78,10 @@ export function createApp({ env = process.env, fetchImpl = globalThis.fetch } = 
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'no-referrer');
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-    const pathname = new URL(req.url, 'http://localhost').pathname;
     try {
+      let pathname;
+      try { pathname = new URL(req.url, 'http://localhost').pathname; }
+      catch { throw Object.assign(new Error('Некорректный URL.'), { status: 400 }); }
       if (pathname === '/api/chat') {
         const origin = req.headers.origin;
         if (origin && !allowed.has(origin)) return send(res, 403, { error: 'Источник запроса не разрешён.' });
