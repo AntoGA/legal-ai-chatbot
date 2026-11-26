@@ -71,3 +71,15 @@ test('malformed JSON and oversized body are rejected', async t => {
   assert.equal((await send('{')).status, 400);
   assert.equal((await send('x'.repeat(103000))).status, 413);
 });
+
+
+test('malformed request target returns 400 and server remains available', async t => {
+  const { base } = await fixture(t, async () => { throw new Error('unexpected'); });
+  const { request } = await import('node:http');
+  const status = await new Promise((resolve, reject) => {
+    const req = request(base, { path: '//[' }, res => { res.resume(); resolve(res.statusCode); });
+    req.on('error', reject); req.end();
+  });
+  assert.equal(status, 400);
+  assert.equal((await fetch(`${base}/healthz`)).status, 200);
+});
